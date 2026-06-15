@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f7f6f9, #9a999f, #24243e);
+  height: 100vh;
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.calculator {
+  background: linear-gradient(135deg, #f7f6f9, #9a999f, #24243e);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  
+  /* Standardní odsazení pro mobilní zařízení pod Dynamic Island a Home Bar */
+  padding-top: env(safe-area-inset-top, 44px);
+  padding-bottom: env(safe-area-inset-bottom, 34px);
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: all 0.3s ease;
+}
+
+.display {
+  background: #121215;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  text-align: right;
+  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.7);
+  border: 1px solid #8a2be2;
+  
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+#current {
+  font-size: 5.5rem;
+  font-weight: 300;
+  white-space: nowrap;
+  transition: font-size 0.15s ease;
+}
+
+#previous {
+  display: none; /* Originální iOS kalkulačka nemá horní řádek historie */
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:hover {
+  filter: brightness(1.15);
+}
+
+/* Vaše původní barvy tlačítek */
+.number, .decimal {
+  background: #2a2a4a;
+  color: white;
+}
+
+.operator {
+  background: linear-gradient(135deg, #38363b, #9a999f, #aeaeb4);
+  color: white;
+}
+
+/* Aktivní stav operátoru (styl iPhone v neonovém provedení) */
+.operator.active {
+  background: white;
+  color: #2a2a4a;
+}
+
+.equals {
+  background: linear-gradient(135deg, #faf9fc, #bdbcc1, #f6f6f9);
+  color: #0a0a1f;
+  font-weight: bold;
+}
+
+.clear, .toggle-sign {
+  background: linear-gradient(135deg, #1b1b1d, #060607, #e7e7ed);
+  color: white;
+}
+
+.zero {
+  grid-column: span 2;
+  aspect-ratio: auto;
+  height: 100%;
+  border-radius: 50px;
+  justify-content: flex-start;
+  padding-left: 32px;
+}
+
+/* ==========================================================================
+   RESPONSIVNÍ DESIGN PRO TABLETY A POČÍTAČE (Obrazovky širší než 480px)
+   ========================================================================== */
+@media (min-width: 480px) {
+  .calculator {
+    width: 400px;
+    height: auto;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
+                0 0 30px rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+  }
+
+  .display {
+    flex: none;
+    min-height: 140px;
+    margin-bottom: 25px;
+  }
+
+  button {
+    height: 70px;
+    aspect-ratio: auto;
+    font-size: 1.4rem;
+  }
+
+  .zero {
+    height: 70px;
+  }
+}
